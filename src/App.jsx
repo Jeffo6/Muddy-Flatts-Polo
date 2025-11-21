@@ -88,7 +88,7 @@ function App() {
             </div>
           </div>
 
-          <div className='fullwidth split-2-3 ptxxl'>
+          <div className='fullwidth split-2-3 t-split-rev ptxxl'>
             <div className='row justify-center'>
               <Fade triggerOnce duration={1200}>
                 <div>
@@ -122,7 +122,7 @@ function App() {
             </div>
           </div>
 
-          <div id='TarloHill' className='fullwidth split ptxxl'>
+          <div id='TarloHill' className='fullwidth split t-split-rev ptxxl'>
             <div className='relative'>
               <div>
                 <Fade triggerOnce duration={1200}>
@@ -133,7 +133,7 @@ function App() {
               </div>
               <div>
                 <Fade triggerOnce duration={1000}>
-                  <p className='ptxl pbxl'>We offer riding and polo experience weekends which marry adventure with class. Come out, spend the day in the saddle exploring stunning landscapes, then unwind by the fire for great conversation with your fellow travellers.</p>
+                  <p className='ptxl pbxl'>Leave the city behind for a weekend where time slows down, horizons stretch wide, and the only agenda is the one you set. It's the kind of reset that stays with you long after you return home.</p>
                 </Fade>
               </div>
               <div>
