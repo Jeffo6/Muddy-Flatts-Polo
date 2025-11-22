@@ -46,7 +46,7 @@ function App() {
         <section className='container'>
 
           <Fade triggerOnce duration={1200}>
-            <h2 className='ptxxl tac pbl'>Where Country Meets Class</h2>
+            <h2 className='ptxxl tac pbl'>The Home of Friendly Chukkas</h2>
           </Fade>
 
           <div className="fullwidth split">
@@ -245,7 +245,7 @@ function App() {
             <div className='footer-content'>
               <div className='footer-section'>
                 <img src={Logo} alt="Muddy Flatts Polo Club Logo" className='footer-logo' />
-                <p className='footer-tagline'>Where Country Meets Class</p>
+                <p className='footer-tagline'>The Home of Friendly Chukkas</p>
               </div>
 
               <div className='footer-section'>
