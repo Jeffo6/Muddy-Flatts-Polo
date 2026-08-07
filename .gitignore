@@ -13,6 +13,9 @@ dist-ssr
 build
 *.local
 
+.claude/
+docs
+
 
 # Editor directories and files
 .vscode/*

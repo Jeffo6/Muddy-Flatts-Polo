@@ -66,12 +66,9 @@ h1, h2, h3, h4, h5 {
 }
 
 h1 {
-  z-index: 2;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 60px;
+  // Fluid between the 480px and 1500px breakpoints so the two-line hero lockup
+  // never wraps mid-word on the way down. Tops out at the tuned 60px.
+  font-size: clamp(28px, 4.2vw, 60px);
   text-shadow: 1px 0 5px #000;
 }
 
@@ -95,6 +92,29 @@ p {
 .italic {
   font-style: italic;
   font-size: 16px;
+}
+
+// Street address under a section heading. Carries h4's type treatment without
+// being a heading — it isn't one, and using h4 here skipped a level after h2.
+.address {
+  font-family: "Sansita", sans-serif;
+  font-size: 20px;
+  line-height: 1.2em;
+}
+
+// Skip link — offscreen until focused
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  z-index: 1100;
+  padding: 12px 24px;
+  background-color: var(--rose-ebony);
+  border: 1px solid var(--foreground);
+
+  &:focus {
+    left: 10px;
+    top: 10px;
+  }
 }
 
 // Header
@@ -121,24 +141,71 @@ header {
     height: 80px;
     width: auto !important;
   }
+}
 
-  h2 {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    opacity: 0;
-    transition: opacity 600ms ease;
+// Primary navigation
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 30px;
 
-    &.visible {
-      opacity: 1;
+  // The in-menu CTA is a mobile-only duplicate of the header button — hidden
+  // until the nav collapses at 768px
+  > .btn {
+    display: none;
+  }
+
+  // `:not(.btn)` so the in-menu CTA keeps its button styling instead of
+  // picking up the nav-link underline
+  a:not(.btn) {
+    position: relative;
+    font-family: "Sansita", sans-serif;
+    font-size: 20px;
+    line-height: 1.2em;
+    padding-bottom: 4px;
+    transition: opacity 250ms;
+
+    // Underline marks the active route. Drawn on a pseudo-element so it can
+    // animate in on hover without shifting the nav item.
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 45px;
+      max-width: 100%;
+      height: 1px;
+      background-color: var(--foreground);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 250ms ease;
+    }
+
+    &:hover::after,
+    &:focus-visible::after,
+    &.active::after {
+      transform: scaleX(1);
     }
   }
 }
 
-// Landing section
-#landing {
+// Mobile nav toggle — hidden until the 768px breakpoint collapses the nav
+.nav-toggle {
+  display: none;
+  background: none;
+  border: 0;
+  padding: 8px;
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+// Hero
+.hero {
   position: relative;
-  background-image: url('/src/assets/bg.jpg');
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -148,11 +215,60 @@ header {
   &::before {
     content: '';
     position: absolute;
+    inset: 0;
     background-color: rgba(0, 0, 0, 0.2);
     z-index: 1;
-    width: 100%;
-    height: 100%;
   }
+
+  // Shorter hero for interior pages — Figma uses a 600px band rather than full viewport
+  &.hero--page {
+    height: 600px;
+    max-height: 70vh;
+  }
+}
+
+// Two-line brand lockup, split by a rule (Figma: "Muddy Flatts Polo" / "Tarlo Hill Equestrian")
+.hero-lockup {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 0 30px;
+
+  h1 {
+    display: inline-flex;
+    flex-direction: column;
+  }
+
+  // The divider is the second line's top border, so it always matches the
+  // width of the widest line without needing a fixed measurement
+  .hero-line + .hero-line {
+    border-top: 1px solid var(--foreground);
+    margin-top: 6px;
+    padding-top: 6px;
+  }
+}
+
+// Accent band — full-bleed rose-ebony conversion panel
+.band {
+  background-color: var(--rose-ebony);
+  text-align: center;
+
+  h2 {
+    font-weight: 700;
+  }
+
+  p {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 990px;
+  }
+}
+
+// Pull-quote — rule above and below, indented (Figma: "Paragraph+Border")
+.pullquote {
+  border-top: 1px solid var(--foreground);
+  border-bottom: 1px solid var(--foreground);
+  padding: 20px 0 20px 20px;
 }
 
 // Layout utilities
@@ -292,6 +408,42 @@ header {
       }
     }
   }
+
+  // Ghost variant — used on the rose-ebony accent band where a filled
+  // rose-ebony button would disappear into the background
+  &.outline {
+    background-color: transparent;
+
+    &::before {
+      background-color: var(--foreground);
+    }
+
+    &:hover {
+      &::before {
+        transform: translateY(0);
+      }
+
+      span {
+        color: var(--rose-ebony);
+      }
+    }
+  }
+
+  // Keyboard focus ring — the hover fill alone gives no focus affordance
+  &:focus-visible {
+    outline: 2px solid var(--foreground);
+    outline-offset: 3px;
+  }
+
+  &[aria-disabled='true'],
+  &:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+
+    &::before {
+      transform: translateY(-100%);
+    }
+  }
 }
 
 // Contact section
@@ -316,6 +468,77 @@ header {
   }
 }
 
+// Enquiry form
+.enquiry-form {
+  max-width: 551px;
+  width: 100%;
+
+  .field {
+    margin-bottom: 20px;
+  }
+
+  // Visually hidden but read by screen readers — the Figma design is
+  // placeholder-only, which leaves no accessible name on the inputs
+  .field label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  input,
+  textarea {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    background-color: #d9d9d9;
+    color: #2b2b2b;
+    font-size: 18px;
+    transition: 250ms;
+
+    &::placeholder {
+      color: #6b6b6b;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--foreground);
+      outline-offset: 2px;
+    }
+
+    &[aria-invalid='true'] {
+      border-color: var(--rose-ebony);
+      background-color: #f0dede;
+    }
+  }
+
+  textarea {
+    min-height: 80px;
+    resize: vertical;
+  }
+
+  .field-error {
+    display: block;
+    margin-top: 6px;
+    font-size: 14px;
+    color: #f3d6d6;
+  }
+
+  .form-status {
+    margin-top: 20px;
+    font-size: 16px;
+
+    &.error {
+      color: #f3d6d6;
+    }
+  }
+}
+
 // Map container
 .map-container {
   width: 100%;
@@ -334,10 +557,25 @@ footer {
 
   .footer-content {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    // Last column is wider — Figma splits it into a top-level list and a
+    // per-property sub-list sitting side by side
+    grid-template-columns: 1fr 1fr 1fr 1.4fr;
     gap: 40px;
     padding-bottom: 40px;
     border-bottom: 1px solid rgba(246, 248, 255, 0.2);
+  }
+
+  .footer-links-split {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 20px;
+  }
+
+  .footer-subheading {
+    margin-bottom: 5px;
+    font-family: "Sansita", sans-serif;
+    font-size: 16px;
+    line-height: 1.2em;
   }
 
   .footer-section {
@@ -433,14 +671,14 @@ footer {
   header {
     padding-left: 20px;
     padding-right: 20px;
-
-    h2 {
-      font-size: 28px;
-    }
   }
 
-  h1 {
-    font-size: 48px;
+  .site-nav {
+    gap: 18px;
+
+    a:not(.btn) {
+      font-size: 18px;
+    }
   }
 
   h2 {
@@ -495,34 +733,52 @@ footer {
     height: 80px;
     padding-left: 15px;
     padding-right: 15px;
-    flex-wrap: wrap;
-    justify-content: center;
 
     img {
       height: 60px;
     }
 
-    h2 {
-      position: static;
-      transform: none;
-      font-size: 24px;
-      width: 100%;
-      text-align: center;
-      margin-top: 10px;
+    // Header button moves into the collapsed menu so the primary CTA
+    // survives on mobile rather than being hidden outright
+    > .btn {
+      display: none;
+    }
+  }
+
+  .nav-toggle {
+    display: block;
+  }
+
+  .site-nav {
+    display: none;
+    position: absolute;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 10px 15px 20px;
+    background-color: var(--bg);
+    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.3);
+
+    &.is-open {
+      display: flex;
     }
 
-    .btn {
-      display: none; // Hide button on mobile header
+    a:not(.btn) {
+      padding: 12px 0;
+      font-size: 20px;
+    }
+
+    > .btn {
+      display: inline-block;
+      margin-top: 10px;
+      text-align: center;
     }
   }
 
   // Typography
-  h1 {
-    font-size: 36px;
-    padding: 0 20px;
-    text-align: center;
-  }
-
   h2 {
     font-size: 28px;
   }
@@ -585,9 +841,18 @@ footer {
       gap: 30px;
     }
 
+    .footer-links-split {
+      grid-template-columns: 1fr 1fr;
+    }
+
     .footer-bottom {
       padding-top: 20px;
     }
+  }
+
+  // Hero
+  .hero.hero--page {
+    height: 380px;
   }
 
   // Map containers
@@ -597,27 +862,30 @@ footer {
 }
 
 @media (max-width: 480px) {
-  h1 {
-    font-size: 28px;
-  }
-
   h2 {
     font-size: 24px;
-  }
-
-  header {
-    height: auto;
-    padding-top: 10px;
-    padding-bottom: 10px;
-
-    &.scrolled h2 {
-      margin-top: 5px;
-    }
   }
 
   .btn {
     padding: 10px 20px;
     font-size: 14px;
+  }
+
+  footer .footer-links-split {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Respect reduced-motion preferences — react-awesome-reveal animations are
+// disabled per-component via the `triggerOnce`/duration props at the call site
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 
