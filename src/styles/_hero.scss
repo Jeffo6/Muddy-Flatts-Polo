@@ -1,0 +1,107 @@
+// Hero
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  height: 100svh;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 1;
+  }
+
+  // Shorter hero for interior pages — Figma uses a 600px band rather than full viewport
+  &.hero--page {
+    height: 600px;
+    max-height: 70vh;
+  }
+}
+
+// Two-line brand lockup, split by a rule (Figma: "Muddy Flatts Polo" / "Tarlo Hill Equestrian")
+.hero-lockup {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 0 30px;
+
+  h1 {
+    display: inline-flex;
+    flex-direction: column;
+  }
+
+  // The rule is its own element rather than a border so it can be scaled from
+  // the centre outwards on load. Width follows the widest line automatically.
+  .hero-rule {
+    display: block;
+    height: 1px;
+    margin: 6px 0;
+    background-color: var(--foreground);
+    transform: scaleX(0);
+    animation: heroRuleGrow 700ms ease-out forwards;
+  }
+
+  .hero-line {
+    opacity: 0;
+    animation-duration: 900ms;
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+    animation-fill-mode: forwards;
+  }
+
+  .hero-line--up {
+    animation-name: heroLineUp;
+  }
+
+  .hero-line--down {
+    animation-name: heroLineDown;
+  }
+
+  // Only the two-line lockup waits for the rule; a single-line page hero
+  // fades straight in.
+  &.hero-lockup--split .hero-line {
+    animation-delay: 450ms;
+  }
+}
+
+// Entrance sequence: the rule draws outwards from the centre, then the two
+// title lines travel away from it into place.
+@keyframes heroRuleGrow {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes heroLineUp {
+  from {
+    opacity: 0;
+    transform: translateY(0.55em);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroLineDown {
+  from {
+    opacity: 0;
+    transform: translateY(-0.55em);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

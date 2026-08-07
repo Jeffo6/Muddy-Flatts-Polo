@@ -1,0 +1,104 @@
+// Buttons
+.btn {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  padding: 12px 24px;
+  border: 1px solid var(--foreground);
+  transition: 250ms;
+  cursor: pointer;
+
+  span {
+    position: relative;
+    z-index: 1;
+    transition: 250ms;
+  }
+
+  &::before {
+    top: 0;
+    left: 0;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform: translateY(-100%);
+    transition: 500ms;
+    z-index: 0;
+  }
+
+  &.red {
+    background-color: var(--rose-ebony);
+
+    &::before {
+      background-color: var(--foreground);
+    }
+
+    &:hover {
+      color: var(--rose-ebony);
+
+      &::before {
+        transform: translateY(0);
+      }
+
+      span {
+        color: var(--rose-ebony);
+      }
+    }
+  }
+
+  &.green {
+    background-color: var(--dark-green);
+
+    &::before {
+      background-color: var(--foreground);
+    }
+
+    &:hover {
+      color: var(--dark-green);
+
+      &::before {
+        transform: translateY(0);
+      }
+
+      span {
+        color: var(--dark-green);
+      }
+    }
+  }
+
+  // Ghost variant — used on the rose-ebony accent band where a filled
+  // rose-ebony button would disappear into the background
+  &.outline {
+    background-color: transparent;
+
+    &::before {
+      background-color: var(--foreground);
+    }
+
+    &:hover {
+      &::before {
+        transform: translateY(0);
+      }
+
+      span {
+        color: var(--rose-ebony);
+      }
+    }
+  }
+
+  // Keyboard focus ring — the hover fill alone gives no focus affordance
+  &:focus-visible {
+    outline: 2px solid var(--foreground);
+    outline-offset: 3px;
+  }
+
+  &[aria-disabled='true'],
+  &:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+
+    &::before {
+      transform: translateY(-100%);
+    }
+  }
+}

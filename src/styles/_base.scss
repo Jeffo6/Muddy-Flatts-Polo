@@ -1,0 +1,78 @@
+// Base styles
+body {
+  background-color: var(--bg);
+  font-size: 16px;
+  font-family: "Nunito Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings: "wdth" 100, "YTLC" 500;
+}
+
+* {
+  color: var(--foreground);
+}
+
+main {
+  background-color: var(--bg);
+}
+
+// Typography
+h1, h2, h3, h4, h5 {
+  line-height: 1.2em;
+  font-family: "Sansita", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+h1 {
+  // Fluid between the 480px and 1500px breakpoints so the two-line hero lockup
+  // never wraps mid-word on the way down. Tops out at the tuned 60px.
+  font-size: clamp(28px, 4.2vw, 60px);
+  text-shadow: 1px 0 5px #000;
+}
+
+h2 {
+  font-size: 36px;
+}
+
+h3 {
+  font-size: 26px;
+}
+
+h4 {
+  font-size: 20px;
+}
+
+p {
+  font-size: 18px;
+  line-height: 1.4em;
+}
+
+.italic {
+  font-style: italic;
+  font-size: 16px;
+}
+
+// Street address under a section heading. Carries h4's type treatment without
+// being a heading — it isn't one, and using h4 here skipped a level after h2.
+.address {
+  font-family: "Sansita", sans-serif;
+  font-size: 20px;
+  line-height: 1.2em;
+}
+
+// Skip link — offscreen until focused
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  z-index: 1100;
+  padding: 12px 24px;
+  background-color: var(--rose-ebony);
+  border: 1px solid var(--foreground);
+
+  &:focus {
+    left: 10px;
+    top: 10px;
+  }
+}

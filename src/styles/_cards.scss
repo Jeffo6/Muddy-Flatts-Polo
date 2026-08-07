@@ -1,0 +1,231 @@
+// Hub card grid — one card per bookable experience on a property page
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+
+  // react-awesome-reveal wraps each child in its own <div>, which becomes the
+  // real grid item. Without this the wrapper stretches but the card inside
+  // doesn't, so a two-line teaser makes its card taller than its neighbour.
+  > * {
+    display: flex;
+  }
+}
+
+// Shared click affordance. Top level rather than nested under .activity-card so
+// the related-activity links on the accent band pick it up too — pushed to the
+// bottom of its container so it lines up across items of differing text length.
+.activity-card-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: auto;
+  font-size: 16px;
+  letter-spacing: 0.02em;
+}
+
+.activity-card-arrow {
+  transition: transform 300ms ease;
+}
+
+.activity-card {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  background-color: var(--rose-ebony);
+  border: 1px solid var(--foreground);
+  transition:
+    transform 300ms ease,
+    box-shadow 300ms ease;
+
+  &.activity-card--green {
+    background-color: var(--dark-green);
+  }
+
+  // Fixed ratio reserves the space before the lazy image lands, so the grid
+  // doesn't reflow as cards load
+  .activity-card-media {
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 600ms ease;
+    }
+  }
+
+  .activity-card-body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 26px 28px 28px;
+  }
+
+  .activity-card-title {
+    margin-bottom: 12px;
+  }
+
+  .activity-card-teaser {
+    font-size: 16px;
+    margin-bottom: 24px;
+  }
+
+  &:hover,
+  &:focus-visible {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.28);
+
+    .activity-card-media img {
+      transform: scale(1.06);
+    }
+
+    .activity-card-arrow {
+      transform: translateX(6px);
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--foreground);
+    outline-offset: 4px;
+  }
+}
+
+// Team grid — equal half-width columns, each member centred within its own
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+
+  // Same reveal-wrapper caveat as .card-grid
+  > * {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.team-member {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+// Placeholder disc standing in for a portrait until real photography exists
+.team-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 180px;
+  height: 180px;
+  margin-bottom: 26px;
+  border: 1px solid var(--foreground);
+  border-radius: 50%;
+  background-color: var(--rose-ebony);
+  font-family: "Sansita", sans-serif;
+  font-size: 44px;
+  line-height: 1;
+  letter-spacing: 0.02em;
+
+  &.team-avatar--green {
+    background-color: var(--dark-green);
+  }
+}
+
+// Back-link above an activity page's content
+.breadcrumb {
+  font-size: 16px;
+
+  a {
+    transition: opacity 250ms;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+}
+
+// Booking slot on an activity page. Centred and bordered top and bottom so it
+// reads as its own step without needing a background colour of its own.
+.booking-panel {
+  text-align: center;
+  border-top: 1px solid rgba(246, 248, 255, 0.25);
+  border-bottom: 1px solid rgba(246, 248, 255, 0.25);
+
+  p {
+    max-width: 620px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+// Cross-sell links on the accent band beneath the booking panel
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 30px;
+  text-align: left;
+
+  > * {
+    display: flex;
+  }
+}
+
+.related-item {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 24px 26px;
+  border: 1px solid rgba(246, 248, 255, 0.35);
+  transition:
+    background-color 250ms ease,
+    transform 250ms ease;
+
+  .related-item-title {
+    margin-bottom: 10px;
+    font-size: 22px;
+  }
+
+  // `.band p` centres its copy with auto margins, which inside this column
+  // flex container shrink-wraps the paragraph and centres it. Reset so the
+  // teaser fills the card and stays left-aligned.
+  .related-item-teaser {
+    max-width: none;
+    margin: 0 0 20px;
+    font-size: 16px;
+  }
+
+  .activity-card-more {
+    margin-top: auto;
+  }
+
+  &:hover,
+  &:focus-visible {
+    background-color: rgba(246, 248, 255, 0.08);
+    transform: translateY(-4px);
+
+    .activity-card-arrow {
+      transform: translateX(6px);
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--foreground);
+    outline-offset: 3px;
+  }
+}
+
+// Acuity scheduler embed
+.booking-embed {
+  max-width: 1000px;
+  margin: 0 auto;
+  background-color: var(--foreground);
+
+  iframe {
+    display: block;
+    width: 100%;
+    border: 0;
+  }
+}

@@ -1,0 +1,39 @@
+:root {
+  --ptxxl: 150px;
+  --ptxl: 110px;
+  --ptl: 60px;
+  --ptm: 40px;
+  --pts: 30px;
+  --ptxs: 20px;
+  --ptxxs: 15px;
+
+  --pbxxl: 150px;
+  --pbxl: 110px;
+  --pbl: 60px;
+  --pbm: 40px;
+  --pbs: 30px;
+  --pbxs: 20px;
+  --pbxxs: 15px;
+
+  --bg: #918B76;
+  --foreground: #F6F8FF;
+  --rose-ebony: #553739;
+  --dark-green: #062726;
+}
+
+// Padding utilities
+.ptxxl { padding-top: var(--ptxxl); }
+.ptxl { padding-top: var(--ptxl); }
+.ptl { padding-top: var(--ptl); }
+.ptm { padding-top: var(--ptm); }
+.pts { padding-top: var(--pts); }
+.ptxs { padding-top: var(--ptxs); }
+.ptxxs { padding-top: var(--ptxxs); }
+
+.pbxxl { padding-bottom: var(--pbxxl); }
+.pbxl { padding-bottom: var(--pbxl); }
+.pbl { padding-bottom: var(--pbl); }
+.pbm { padding-bottom: var(--pbm); }
+.pbs { padding-bottom: var(--pbs); }
+.pbxs { padding-bottom: var(--pbxs); }
+.pbxxs { padding-bottom: var(--pbxxs); }

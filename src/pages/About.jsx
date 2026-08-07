@@ -15,6 +15,12 @@ const TEAM = [
   { name: CONTACT.name, role: 'Trainer / Manager', email: CONTACT.email, phone: CONTACT.phone },
 ]
 
+const initials = (name) =>
+  name
+    .split(' ')
+    .map((word) => word[0])
+    .join('')
+
 function About() {
   return (
     <>
@@ -71,10 +77,18 @@ function About() {
           <Fade triggerOnce duration={1200}>
             <h2 className="tac pbl">Our Team</h2>
           </Fade>
-          <div className="split">
-            {TEAM.map(({ name, role, email, phone }) => (
+          <div className="team-grid">
+            {TEAM.map(({ name, role, email, phone }, index) => (
               <Fade triggerOnce duration={1000} key={name}>
-                <div>
+                <div className="team-member">
+                  {/* Coloured disc with initials stands in until real portraits
+                      exist — reads as deliberate rather than as a broken image */}
+                  <span
+                    className={`team-avatar ${index % 2 ? 'team-avatar--green' : ''}`}
+                    aria-hidden="true"
+                  >
+                    {initials(name)}
+                  </span>
                   <h3 className="pbxxs">{name}</h3>
                   <p className="pbxs italic">{role}</p>
                   {email && (

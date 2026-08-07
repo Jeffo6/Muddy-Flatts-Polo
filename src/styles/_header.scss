@@ -1,0 +1,82 @@
+// Header
+header {
+  height: 100px;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding-left: 40px;
+  padding-right: 40px;
+  transition: background-color 600ms ease;
+
+  &.scrolled {
+    background-color: var(--bg);
+    box-shadow: 2px 0 5px #000;
+  }
+
+  img {
+    height: 80px;
+    width: auto !important;
+  }
+}
+
+// Primary navigation
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+
+  // The in-menu CTA is a mobile-only duplicate of the header button — hidden
+  // until the nav collapses at 768px
+  > .btn {
+    display: none;
+  }
+
+  // `:not(.btn)` so the in-menu CTA keeps its button styling instead of
+  // picking up the nav-link underline
+  a:not(.btn) {
+    position: relative;
+    font-family: "Sansita", sans-serif;
+    font-size: 20px;
+    line-height: 1.2em;
+    padding-bottom: 4px;
+    transition: opacity 250ms;
+
+    // Underline marks the active route. Drawn on a pseudo-element so it can
+    // animate in on hover without shifting the nav item, and sized to the full
+    // width of its own link rather than a fixed measurement.
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 1px;
+      background-color: var(--foreground);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 250ms ease;
+    }
+
+    &:hover::after,
+    &:focus-visible::after,
+    &.active::after {
+      transform: scaleX(1);
+    }
+  }
+}
+
+// Mobile nav toggle — hidden until the 768px breakpoint collapses the nav
+.nav-toggle {
+  display: none;
+  background: none;
+  border: 0;
+  padding: 8px;
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+}

@@ -1,0 +1,24 @@
+// Accent band — full-bleed rose-ebony conversion panel
+.band {
+  background-color: var(--rose-ebony);
+  text-align: center;
+
+  h2 {
+    font-weight: 700;
+  }
+
+  p {
+    margin-left: auto;
+    margin-right: auto;
+    // Shorter than the split columns: centred text needs a tighter measure to
+    // stay readable, since there's no left edge to track back to
+    max-width: 860px;
+  }
+}
+
+// Pull-quote — rule above and below, indented (Figma: "Paragraph+Border")
+.pullquote {
+  border-top: 1px solid var(--foreground);
+  border-bottom: 1px solid var(--foreground);
+  padding: 20px 0 20px 20px;
+}

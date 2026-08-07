@@ -76,17 +76,15 @@ function Home() {
               </p>
               <p className="pbxs mwm">
                 Whether you&rsquo;re brand new to horses or looking to take your polo further, our
-                coaching is designed to meet you where you&rsquo;re at. We focus on strong riding
-                foundations, horsemanship, and the skills that translate directly to the
-                field&mdash;helping you become a true partner with your horse while progressing at a
-                pace that feels supportive and achievable.
+                coaching meets you where you are. We focus on strong riding foundations, horsemanship
+                and the skills that carry straight onto the field, so you become a real partner with
+                your horse at a pace that feels achievable.
               </p>
               <p className="pbm mwm">
-                For those ready to step into gameplay, our academy sessions offer a friendly,
-                semi-competitive environment led by coaches who guide the action, keep play flowing,
-                and teach in the moment. It&rsquo;s an experiential approach that lets newer players
-                learn comfortably in a game setting while giving more seasoned players space to
-                develop their competitive edge.
+                When you&rsquo;re ready for gameplay, our academy sessions offer a friendly,
+                semi-competitive environment led by coaches who guide the action and teach in the
+                moment. Newer players learn comfortably in a real game setting, while more seasoned
+                players get the space to sharpen their competitive edge.
               </p>
             </Fade>
             <Fade triggerOnce duration={1000}>

@@ -1,0 +1,103 @@
+// Contact section
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.contact-icon {
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.contact-link {
+  color: var(--foreground);
+  text-decoration: none;
+  transition: 250ms;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+// Enquiry form
+.enquiry-form {
+  max-width: 551px;
+  width: 100%;
+
+  .field {
+    margin-bottom: 20px;
+  }
+
+  // Visually hidden but read by screen readers — the Figma design is
+  // placeholder-only, which leaves no accessible name on the inputs
+  .field label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  input,
+  textarea {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    background-color: #d9d9d9;
+    color: #2b2b2b;
+    font-size: 18px;
+    transition: 250ms;
+
+    &::placeholder {
+      color: #6b6b6b;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--foreground);
+      outline-offset: 2px;
+    }
+
+    &[aria-invalid='true'] {
+      border-color: var(--rose-ebony);
+      background-color: #f0dede;
+    }
+  }
+
+  textarea {
+    min-height: 80px;
+    resize: vertical;
+  }
+
+  .field-error {
+    display: block;
+    margin-top: 6px;
+    font-size: 14px;
+    color: #f3d6d6;
+  }
+
+  .form-status {
+    margin-top: 20px;
+    font-size: 16px;
+
+    &.error {
+      color: #f3d6d6;
+    }
+  }
+}
+
+// Map container
+.map-container {
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+
+  iframe {
+    display: block;
+  }
+}

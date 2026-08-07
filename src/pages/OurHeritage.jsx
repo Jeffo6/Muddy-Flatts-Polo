@@ -28,8 +28,8 @@ function OurHeritage() {
               <p className="pbxs mwm">
                 For four generations, the Ashton family has lived alongside horses. They have bred
                 them, trained them, worked with them and competed on them. Polo has never simply been
-                a sport&mdash;it has been a way of life, passed from one generation to the next
-                through long days in the saddle and a deep respect for horses.
+                a sport. It has been a way of life, passed from one generation to the next through
+                long days in the saddle and a deep respect for horses.
               </p>
               <p className="mwm">
                 Today, our family continues that tradition by sharing the game with a new generation
@@ -48,8 +48,8 @@ function OurHeritage() {
           <Fade triggerOnce cascade damping={0.2} duration={1000}>
             <h2 className="pbs">The Ashton Brothers</h2>
             <p className="pbxs mwl">
-              Few families have left a greater mark on Australian polo than the Ashton
-              brothers&mdash;James, Philip, Robert and Geoffrey Ashton.
+              Few families have left a greater mark on Australian polo than the Ashton brothers:
+              James, Philip, Robert and Geoffrey.
             </p>
             <p className="pbxs mwl">
               Raised on the family&apos;s sheep station, Markdale, near Binda in New South Wales, the
@@ -106,7 +106,9 @@ function OurHeritage() {
           </Fade>
         </div>
 
-        <div className="fullwidth split ptxxl">
+        {/* pbxxl matters here: without it this section runs straight into the
+            rose-ebony band below and the colour change reads as a hard cut */}
+        <div className="fullwidth split ptxxl pbxxl">
           <Fade triggerOnce duration={1200}>
             <div>
               <img src={BBQ} alt="Guests sharing a barbecue on the deck after a day of riding" />

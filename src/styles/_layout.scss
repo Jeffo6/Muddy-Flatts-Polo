@@ -1,0 +1,95 @@
+// Layout utilities
+.fullwidth {
+  width: 100%;
+}
+
+// Reserves roughly a viewport of height while a lazily-loaded route arrives
+.route-fallback {
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1500px;
+  width: 100%;
+  padding-left: 30px;
+  padding-right: 30px;
+  margin: 0 auto;
+}
+
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.split-2-3 {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  gap: 40px;
+}
+
+.row {
+  display: flex;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.col-gap50 {
+  column-gap: 50px;
+}
+
+.tac {
+  text-align: center;
+}
+
+.relative {
+  position: relative;
+}
+
+// Single measured column for long-form pages (activity detail). Narrower than
+// the split columns because there's no image beside it to break up the measure.
+.article {
+  max-width: 768px;
+  margin: 0 auto;
+}
+
+// Opening paragraph, set slightly larger to lead into the body copy
+.article-lead {
+  font-size: 22px;
+  line-height: 1.5em;
+}
+
+// Width utilities
+.mwl {
+  max-width: 768px;
+  width: 100%;
+}
+
+.mwm {
+  max-width: 620px;
+  width: 100%;
+}
+
+.image-520 {
+  max-width: 520px;
+}
+
+// Caps a tall portrait sitting opposite a short block of copy, so the column
+// doesn't tower over its neighbour and leave a void
+.image-cap {
+  width: 100%;
+  max-height: 620px;
+  object-fit: cover;
+}
+
+.ml-auto {
+  margin-left: auto;
+}
+
+.bleed {
+  position: relative;
+  width: 110%;
+  max-width: none;
+}
