@@ -7,6 +7,13 @@ import { NAV_ITEMS } from '../data/site'
 // the footer: once someone has seen the booking option, the next most useful
 // thing to offer is another experience at the same property — not a way back
 // to pages they've already scrolled past.
+//
+// The band takes its property's colour, matching the cards and buttons.
+const BAND_VARIANT = {
+  'muddy-flatts': 'band--red',
+  'tarlo-hill': 'band--green',
+}
+
 function RelatedActivities({ property, currentSlug }) {
   const others = activitiesFor(property).filter((a) => a.slug !== currentSlug)
   if (others.length === 0) return null
@@ -14,7 +21,7 @@ function RelatedActivities({ property, currentSlug }) {
   const parent = NAV_ITEMS.find((item) => item.to === `/${property}`)
 
   return (
-    <div className="band ptxl pbxl">
+    <div className={['band', BAND_VARIANT[property], 'ptxl', 'pbxl'].filter(Boolean).join(' ')}>
       <div className="container">
         <Fade triggerOnce duration={1000}>
           <h2 className="pbm">More at {parent?.label}</h2>

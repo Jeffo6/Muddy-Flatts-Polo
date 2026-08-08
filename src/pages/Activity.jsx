@@ -27,6 +27,8 @@ function Activity({ property }) {
     image,
     bodyImage,
     bodyImageAlt,
+    extraImage,
+    extraImageAlt,
     paragraphs,
     pullquote,
     bookable,
@@ -49,11 +51,22 @@ function Activity({ property }) {
         </Fade>
 
         <div className="fullwidth split pbxxl">
-          <Fade triggerOnce duration={1200}>
-            <div>
-              <img src={bodyImage} alt={bodyImageAlt} className="image-cap" />
-            </div>
-          </Fade>
+          <div>
+            <Fade triggerOnce duration={1200}>
+              <div>
+                <img src={bodyImage} alt={bodyImageAlt} className="image-cap" />
+              </div>
+            </Fade>
+            {/* Optional second shot, set only where the copy runs long enough
+                to leave this column empty beneath the first image */}
+            {extraImage && (
+              <Fade triggerOnce duration={1200}>
+                <div className="ptl">
+                  <img src={extraImage} alt={extraImageAlt} className="image-cap image-cap--sm" />
+                </div>
+              </Fade>
+            )}
+          </div>
 
           <div>
             <Fade triggerOnce cascade damping={0.15} duration={1000}>

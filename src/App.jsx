@@ -10,12 +10,12 @@ import './App.scss'
 // Home stays in the main bundle — it's the landing page, so deferring it would
 // only add a round-trip for the most-visited route. The interior pages are
 // split out and fetched on navigation.
-const MuddyFlatts = lazy(() => import('./pages/MuddyFlatts'))
-const TarloHill = lazy(() => import('./pages/TarloHill'))
-const Activity = lazy(() => import('./pages/Activity'))
-const About = lazy(() => import('./pages/About'))
-const OurHeritage = lazy(() => import('./pages/OurHeritage'))
-const NotFound = lazy(() => import('./pages/NotFound'))
+import MuddyFlatts from './pages/MuddyFlatts'
+import TarloHill from './pages/TarloHill'
+import Activity from './pages/Activity'
+import About from './pages/About'
+import OurHeritage from './pages/OurHeritage'
+import NotFound from './pages/NotFound'
 
 // Holds the page height steady while a lazy chunk loads so the footer doesn't
 // jump up the screen mid-navigation.

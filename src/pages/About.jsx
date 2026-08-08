@@ -5,6 +5,7 @@ import ContactBand from '../components/ContactBand'
 import { CONTACT } from '../data/site'
 import Horse from '../assets/horse.jpg'
 import HorseTeaching from '../assets/horse-teaching.jpg'
+import PoloPlayers from '../assets/polo-players.jpg'
 
 // Figma's team grid carries placeholder data — a "John Smith", and
 // 0444 444 444 / example@muddyflatts.com.au against every member. Only the two
@@ -27,19 +28,34 @@ function About() {
       <Hero image={Horse} title="About" variant="page" />
 
       <section className="container">
-        <Fade triggerOnce cascade damping={0.2} duration={1000}>
-          <h2 className="ptxxl tac pbm">
-            Muddy Flatts is the country club in the city and is home to James Ashton&rsquo;s friendly
-            Chukkas.
-          </h2>
-          <p className="pbxxl mwl tac" style={{ marginInline: 'auto' }}>
-            Muddy Flatts is the polo ground controlled by THEC. We do old fashioned polo as it was
-            played in the bush 50 years ago. Excellent polo field and every thing else is functional.
-            We play fun fast polo and don&rsquo;t run events. The Glamour; Glitz and Gimmicks are
-            provided by all the other clubs. Our aim is to have the best field, with the best ponies
-            and decent players so the game can appeal to athletic young men.
-          </p>
-        </Fade>
+        {/* Image leads so this alternates against the Wallace Ashton block
+            below, which runs copy-left */}
+        <div className="fullwidth split ptxxl pbxxl">
+          <Fade triggerOnce duration={1200}>
+            <div>
+              <img
+                src={PoloPlayers}
+                alt="Players contesting the ball during a chukka at Muddy Flatts"
+                className="image-cap image-cap--sm"
+              />
+            </div>
+          </Fade>
+          <div>
+            <Fade triggerOnce cascade damping={0.2} duration={1000}>
+              <h2 className="pbm">
+                Muddy Flatts is the country club in the city and is home to James Ashton&rsquo;s
+                friendly Chukkas.
+              </h2>
+              <p className="mwm">
+                Muddy Flatts is the polo ground controlled by THEC. We do old fashioned polo as it
+                was played in the bush 50 years ago: an excellent field, and everything else simply
+                functional. We play fun, fast polo and don&rsquo;t run events. The glamour, glitz and
+                gimmicks are provided by all the other clubs. Our aim is to have the best field, the
+                best ponies and decent players, so the game appeals to athletic young riders.
+              </p>
+            </Fade>
+          </div>
+        </div>
 
         <div className="fullwidth split">
           <div>

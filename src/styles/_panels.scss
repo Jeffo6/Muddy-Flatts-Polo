@@ -1,7 +1,16 @@
-// Accent band — full-bleed rose-ebony conversion panel
+// Accent band — full-bleed conversion panel. Defaults to rose-ebony; the
+// modifiers let a band take its property's colour where it belongs to one.
 .band {
   background-color: var(--rose-ebony);
   text-align: center;
+
+  &.band--red {
+    background-color: var(--rose-ebony);
+  }
+
+  &.band--green {
+    background-color: var(--dark-green);
+  }
 
   h2 {
     font-weight: 700;

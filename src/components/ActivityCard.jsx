@@ -14,7 +14,7 @@ function ActivityCard({ activity }) {
   return (
     <Link
       to={`/${property}/${slug}`}
-      className={`activity-card ${PROPERTY_VARIANT[property] || ''}`}
+      className={['activity-card', PROPERTY_VARIANT[property]].filter(Boolean).join(' ')}
     >
       <div className="activity-card-media">
         <img src={image} alt={imageAlt} loading="lazy" />

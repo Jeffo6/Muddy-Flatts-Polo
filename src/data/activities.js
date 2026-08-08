@@ -124,6 +124,10 @@ export const ACTIVITIES = [
     imageAlt: 'A mare and her foal in the paddock at Tarlo Hill',
     bodyImage: HorseTree,
     bodyImageAlt: 'A horse tethered beneath a tree at Tarlo Hill',
+    // This is the longest copy of any activity, so a second image carries the
+    // lower half of the left column rather than leaving it empty
+    extraImage: HorsesRainbow,
+    extraImageAlt: 'Mares and young stock grazing in the paddocks at Tarlo Hill',
     teaser: 'Great horses aren’t found. They’re developed.',
     // Informational, not bookable — Figma's Training & Breeding frame is
     // explicitly labelled "no booking on this page".

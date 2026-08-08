@@ -112,7 +112,7 @@ function Home() {
               </div>
             </Fade>
             <Fade triggerOnce duration={1200}>
-              <div className="ptxxl">
+              <div className="ptl">
                 <img
                   src={BBQ}
                   alt="Guests sharing a barbecue on the deck after a day of riding"
@@ -149,7 +149,7 @@ function Home() {
               </Button>
             </Fade>
             <Fade triggerOnce duration={1200}>
-              <div className="ptxxl">
+              <div className="ptl">
                 <img
                   src={TarloHillSign}
                   alt="The Gordonvale Tarlo Hill property sign standing in open grassland"

@@ -84,6 +84,11 @@
   object-fit: cover;
 }
 
+// Shorter cap for slots where the opposing copy is only a paragraph or two
+.image-cap--sm {
+  max-height: 460px;
+}
+
 .ml-auto {
   margin-left: auto;
 }

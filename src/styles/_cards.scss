@@ -163,13 +163,19 @@
 
 // Cross-sell links on the accent band beneath the booking panel
 .related-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 30px;
   text-align: left;
 
+  // Reveal wrappers are the real flex items. Capped at the width one item
+  // would take in a three-up row, so a property with a single other activity
+  // keeps that same width and sits centred rather than stretching the band.
   > * {
     display: flex;
+    flex: 1 1 300px;
+    max-width: 460px;
   }
 }
 
